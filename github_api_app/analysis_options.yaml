@@ -1,9 +1,6 @@
-include: package:very_good_analysis/analysis_options.yaml
+include: package:flutter_lints/flutter.yaml
 
 linter:
+
   rules:
-    public_member_api_docs: false
-    cascade_invocations: false
-    only_throw_errors: false
-    one_member_abstracts: false
-    use_setters_to_change_properties: false
+    prefer_single_quotes: true
