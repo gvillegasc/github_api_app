@@ -1,5 +1,6 @@
 import express, { Request, Response } from "express";
 import path from "path";
+import commitRoute from "./routes/commit.route";
 
 // Create Express server
 const app = express();
@@ -18,11 +19,12 @@ app.get("/api", (req: Request, res: Response) => {
   res.send("Welcome to the github api :)");
 });
 
-app.get("*", (req: Request, res: Response) => {
+app.get("/", (req: Request, res: Response) => {
   res.sendFile(path.resolve(__dirname, "public/index.html"));
 });
 
 const router = express.Router();
+router.use("/commit", commitRoute);
 app.use("/api", router);
 
 export default app;
