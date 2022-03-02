@@ -5,6 +5,7 @@ import 'package:github_api_app/core/app_strings.dart';
 import 'package:github_api_app/core/responsive.dart';
 import 'package:github_api_app/domain/models/commit.dart';
 import 'package:github_api_app/presentation/ui/widgets/text_paragraph.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CommitsItem extends StatelessWidget {
   const CommitsItem({
@@ -32,6 +33,12 @@ class CommitsItem extends StatelessWidget {
     }
   }
 
+  void _onDetailCommit() async {
+    await canLaunch(commit.htmlUrl)
+        ? await launch(commit.htmlUrl)
+        : throw 'Could not launch ${commit.htmlUrl}';
+  }
+
   @override
   Widget build(BuildContext context) {
     final responsive = Responsive.of(context);
@@ -43,12 +50,12 @@ class CommitsItem extends StatelessWidget {
           focusColor: appTheme.primaryColor,
           hoverColor: appTheme.primaryColor,
           highlightColor: appTheme.primaryColor.withOpacity(.2),
-          onTap: () async {},
+          onTap: _onDetailCommit,
           child: Container(
             padding: EdgeInsets.only(
               left: responsive.widthR(5),
               right: responsive.widthR(5),
-              top: responsive.inchR(1.2),
+              top: 10,
             ),
             width: double.infinity,
             child: Column(
@@ -62,34 +69,32 @@ class CommitsItem extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            commit.commit.message,
+                          TextParagraphBig(
+                            text: commit.commit.message,
+                            color: appTheme.primaryColor,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              color: appTheme.primaryColor,
-                              fontWeight: FontWeight.w500,
-                              fontSize: responsive.spR(12.5),
-                            ),
+                            fontWeight: FontWeight.w500,
                           ),
-                          SizedBox(height: responsive.inchR(.5)),
+                          const SizedBox(height: 5),
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(50),
                                 child: Container(
-                                  height: responsive.inchR(2.5),
-                                  width: responsive.inchR(2.5),
+                                  height: 20,
+                                  width: 20,
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(50)),
+                                    borderRadius: BorderRadius.circular(50),
+                                  ),
                                   child: CachedNetworkImage(
                                     imageUrl: commit.committer.avatarUrl,
                                     fit: BoxFit.cover,
                                   ),
                                 ),
                               ),
-                              SizedBox(width: responsive.inchR(.5)),
+                              const SizedBox(width: 5),
                               TextParagraphRegular(
                                 text: commit.committer.login,
                                 color: appTheme.primaryColor,
@@ -117,9 +122,7 @@ class CommitsItem extends StatelessWidget {
                     )
                   ],
                 ),
-                SizedBox(
-                  height: responsive.inchR(1.5),
-                ),
+                const SizedBox(height: 10),
                 Divider(
                   color: appTheme.primaryColor.withOpacity(.2),
                   height: 1,
