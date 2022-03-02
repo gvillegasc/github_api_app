@@ -12,6 +12,7 @@ dependencies:
   equatable: ^2.0.0
   flutter:
     sdk: flutter
+  http: ^0.13.3
   mocktail: ^0.2.0
 
 dev_dependencies:

@@ -3,6 +3,18 @@ import 'dart:convert';
 List<Commit> commitFromJson(String str) =>
     List<Commit>.from(json.decode(str).map((x) => Commit.fromJson(x)));
 
+class CommitMapper {
+  CommitMapper.fromJsonList(List<dynamic> jsonList) {
+    for (final item in jsonList) {
+      final commit = Commit.fromJson(item as Map<String, dynamic>);
+      items.add(commit);
+    }
+  }
+  CommitMapper();
+
+  List<Commit> items = [];
+}
+
 class Commit {
   Commit({
     required this.sha,
