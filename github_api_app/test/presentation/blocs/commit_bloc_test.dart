@@ -28,9 +28,8 @@ void main() {
   });
 
   group('GetCommits', () {
-    final commits = CommitMapper.fromJsonList(
-            json.decode(fixture('commits.json'))['commits'])
-        .items;
+    final commits =
+        CommitMapper.fromJsonList(json.decode(fixture('commits.json'))).items;
 
     blocTest(
       'emit [LoadingCommits, LoadedCommits] when data is successfully',

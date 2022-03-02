@@ -53,10 +53,10 @@ class RemoteDataSourceImpl implements RemoteDataSource {
 
   @override
   Future<List<Commit>> getCommits() async {
-    final resp = await _apiRequest('/commits');
+    final resp = await _apiRequest('/commit');
     if (resp.statusCode == 200) {
       final decodedData = json.decode(resp.body);
-      final commits = CommitMapper.fromJsonList(decodedData['commits']).items;
+      final commits = CommitMapper.fromJsonList(decodedData).items;
       return commits;
     } else {
       throw ServerException();

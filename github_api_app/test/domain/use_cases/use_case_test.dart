@@ -22,8 +22,7 @@ void main() {
   });
 
   final commits =
-      CommitMapper.fromJsonList(json.decode(fixture('commits.json'))['commits'])
-          .items;
+      CommitMapper.fromJsonList(json.decode(fixture('commits.json'))).items;
 
   test(
     'should get commits from the repository',

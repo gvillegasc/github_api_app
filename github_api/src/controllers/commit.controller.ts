@@ -8,9 +8,7 @@ export const commits = async (req: Request, res: Response) => {
       "https://api.github.com/repos/gvillegasc/github_api_app/commits"
     );
     const commits: ICommit[] = await response.json();
-    return res.status(200).json({
-      commits,
-    });
+    return res.status(200).json(commits);
   } catch (error) {
     return res.status(400).json({
       error,

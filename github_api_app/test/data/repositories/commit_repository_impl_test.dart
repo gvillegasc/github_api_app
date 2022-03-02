@@ -23,9 +23,8 @@ void main() {
   });
 
   group('getCommits', () {
-    final commits = CommitMapper.fromJsonList(
-            json.decode(fixture('commits.json'))['commits'])
-        .items;
+    final commits =
+        CommitMapper.fromJsonList(json.decode(fixture('commits.json'))).items;
 
     test('should get commits from the data source', () async {
       when(() => remoteDataSource.getCommits())
