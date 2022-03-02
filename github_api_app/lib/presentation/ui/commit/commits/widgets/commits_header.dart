@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:github_api_app/core/app_strings.dart';
 import 'package:github_api_app/core/responsive.dart';
 import 'package:github_api_app/presentation/ui/widgets/text_title.dart';
@@ -27,25 +29,58 @@ class CommitsHeader extends StatelessWidget {
           children: [
             Row(
               children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(7),
-                  child: Container(
-                    height: 45,
-                    width: 45,
-                    decoration:
-                        BoxDecoration(borderRadius: BorderRadius.circular(7)),
-                    child: CachedNetworkImage(
-                      imageUrl: imageUrl,
-                      fit: BoxFit.cover,
-                    ),
+                Expanded(
+                  child: Row(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(7),
+                        child: Container(
+                          height: 45,
+                          width: 45,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(7)),
+                          child: CachedNetworkImage(
+                            imageUrl: imageUrl,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      separator,
+                      TextTitleRegular(
+                        text: AppStrings.textRepoAuthor,
+                        color: appTheme.primaryColor.withOpacity(.8),
+                        fontWeight: FontWeight.w500,
+                      )
+                    ],
                   ),
                 ),
-                separator,
-                TextTitleRegular(
-                  text: AppStrings.textRepoAuthor,
-                  color: appTheme.primaryColor.withOpacity(.8),
-                  fontWeight: FontWeight.w500,
-                )
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    SizedBox(
+                      height: responsive.heightR(5),
+                      child: Row(
+                        children: [
+                          SvgPicture.asset(
+                            'assets/pages/icons/ic_moon.svg',
+                            height: responsive.inchR(2.5),
+                            color: appTheme.primaryColor.withOpacity(.8),
+                          ),
+                          Switch(
+                            activeColor: appTheme.colorScheme.secondary,
+                            value: false,
+                            onChanged: (value) {},
+                          ),
+                          SvgPicture.asset(
+                            'assets/pages/icons/ic_sun.svg',
+                            height: responsive.inchR(2.5),
+                            color: appTheme.primaryColor.withOpacity(.8),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
             separator,
