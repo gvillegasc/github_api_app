@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:github_api_app/core/app_strings.dart';
 import 'package:github_api_app/core/responsive.dart';
+import 'package:github_api_app/presentation/blocs/theme/theme_bloc.dart';
 import 'package:github_api_app/presentation/ui/widgets/text_title.dart';
 
 class CommitsHeader extends StatelessWidget {
@@ -45,7 +46,7 @@ class CommitsHeader extends StatelessWidget {
                           ),
                         ),
                       ),
-                      separator,
+                      const SizedBox(width: 15),
                       TextTitleRegular(
                         text: AppStrings.textRepoAuthor,
                         color: appTheme.primaryColor.withOpacity(.8),
@@ -66,10 +67,18 @@ class CommitsHeader extends StatelessWidget {
                             height: responsive.inchR(2.5),
                             color: appTheme.primaryColor.withOpacity(.8),
                           ),
-                          Switch(
-                            activeColor: appTheme.colorScheme.secondary,
-                            value: false,
-                            onChanged: (value) {},
+                          BlocBuilder<ThemeBloc, ThemeState>(
+                            builder: (context, state) {
+                              return Switch(
+                                activeColor: appTheme.colorScheme.secondary,
+                                value: state.isDark,
+                                onChanged: (value) {
+                                  context
+                                      .read<ThemeBloc>()
+                                      .add(OnChangeTheme(value));
+                                },
+                              );
+                            },
                           ),
                           SvgPicture.asset(
                             'assets/pages/icons/ic_sun.svg',

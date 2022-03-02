@@ -4,6 +4,7 @@ import 'package:github_api_app/data/repositories/commit_repository_impl.dart';
 import 'package:github_api_app/domain/repositories/commit_repository.dart';
 import 'package:github_api_app/domain/use_cases/get_commits.dart';
 import 'package:github_api_app/presentation/blocs/commit/commit_bloc.dart';
+import 'package:github_api_app/presentation/blocs/theme/theme_bloc.dart';
 import 'package:http/http.dart' as http;
 
 final getIt = GetIt.instance;
@@ -14,6 +15,9 @@ Future<void> init() async {
     () => CommitBloc(
       getCommits: getIt<GetCommits>(),
     ),
+  );
+  getIt.registerLazySingleton<ThemeBloc>(
+    () => ThemeBloc(),
   );
 
   // Use cases

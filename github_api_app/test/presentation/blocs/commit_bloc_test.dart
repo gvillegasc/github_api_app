@@ -27,7 +27,7 @@ void main() {
     expect(bloc.state, equals(const CommitInitial()));
   });
 
-  group('GetCommits', () {
+  group('OnGetCommits', () {
     final commits =
         CommitMapper.fromJsonList(json.decode(fixture('commits.json'))).items;
 
