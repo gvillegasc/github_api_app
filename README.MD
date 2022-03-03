@@ -1,3 +1,43 @@
+# Github Api App
+
+Github Api App is a mobile application show some my flutter skills this project use Clean Architecture, Bloc, Injection dependencies, some unit test and more, And a backend for show some nodejs skills
+
+## Getting Started for NodeJS Api
+
+### Pre-requisites
+
+For run this application you must install [NodeJS](https://nodejs.org/es/) one of last versions.
+
+### Installation
+After to clone the repository open a console on the folder and move to the `github_api`
+```bash
+# move to the nodejs api project
+cd github_api
+```
+Next download the `nodejs` dependencies with:
+```bash
+# get dependencies
+npm install
+```
+### Usage
+
+Next to download dependencies you have to run the following command for start to run the service of the api.
+
+```bash
+# run the api
+npm run dev
+```
+The service will be running on port 3000 of your computer for default.
+
+You can know if the service is running opening the following url in your computer.
+
+```bash
+# url of services
+http://localhost:3000/api
+```
+
+<br>
+
 ## Getting Started for Flutter App
 
 ### Pre-requisites
@@ -38,10 +78,10 @@ flutter run --target lib/main_staging.dart --flavor staging
 # run in production environment
 flutter run --target lib/main_production.dart --flavor production
 ```
-
-NOTE** if you want run the app on the development environment is necessary start the nodejs api (`github_api`), you can see [here](https://github.com/gvillegasc/github_api_app#getting-started-for-nodejs-api) and put only your ip in the apiHost variable in the file `lib/main_development.dart`.
+NOTE** if you want run the app on the development environment is necessary start the nodejs api (`github_api`), you can see [here](#getting-started-for-nodejs-api) and put only your ip in the apiHost variable in the file `lib/main_development.dart`.
 
 <img src="./readme-images/main_development.png" width="500"/>
+
 
 ### App images
 <table>
@@ -77,6 +117,7 @@ flutter test
 ## Builded with
 
 - [Flutter](https://flutter.dev/) - SDK for develop
+- [NodeJS](https://nodejs.org/es/)
 
 ## Author
 

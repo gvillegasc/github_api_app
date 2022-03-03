@@ -6,7 +6,7 @@ import 'package:github_api_app/injection/injection.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   AppConfig.instance.init(
-    apiHost: 'http://192.168.1.100:3000/api',
+    apiHost: 'http://PUT-YOUR-IP:3000/api',
   );
   await init();
   runApp(const GitHubApiApp());
